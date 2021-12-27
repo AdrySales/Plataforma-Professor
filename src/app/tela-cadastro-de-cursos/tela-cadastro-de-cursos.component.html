@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
+    </head>
+    <body>
+    
+    <app-navbar></app-navbar>
+   
+  
+  
+    <div class="card">
+      <div class="card-action center-align green">
+        <h3>Cadastro de Cursos</h3>
+      </div>
+      <div class="car-content">
+       
+  
+        <form (ngSubmit)="cadastrar()" class="col s6">
+          <div class="input-field col s6">
+            <h5>Nome do Curso</h5>
+            <input type="text" placeholder="Descrição da Atividade" [(ngModel)]="curso.nome" name="Nome" required>
+          </div>
+          <br>
+          <input type="submit" value="Cadastrar" class="btn green" >
+      <br>  
+      <br>
+      </form>
+      </div>
+      </div>
+    
+  
+  
+  
+  
+      <div class="card">
+      <div class="card-action center-align green">
+        <h3>Lista de Cursos</h3>
+      </div>
+    <div *ngIf="ArrayCursos?.length > 0;else noCurso">
+      <ul *ngFor="let curso of ArrayCursos" class="collection">
+        <ul class="collection-curso">
+          <li><a class="titulo">Nome:</a> {{curso.nome}}</li>
+<br><br>
+          <button (click)="deleteCursos($event,curso)" class="btn red">Deletar Curso</button>
+          <br>
+        </ul>
+     
+      </ul>
+    </div>
+  </div>
+    <ng-template #noCurso>
+      <hr>
+      <h5>Não há cursos cadastrados</h5>
+    </ng-template>
+  
+  </body>
+  
+  </html>

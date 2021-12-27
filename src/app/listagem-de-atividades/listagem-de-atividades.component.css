@@ -1,0 +1,52 @@
+
+
+
+  h3{
+    font-size: 35px;
+}
+  .titulo{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+  }
+  .card-action{
+    height: 150px;
+  }
+  .caixaDeDialogo{
+  height: 50px;
+  
+  }
+  button{
+margin-left: 1px;
+  }
+  .card{
+    border-style: solid;
+    border-width:10px;
+    border-color: green;
+  }
+
+  .card-action{
+    box-shadow: 0px 0px   20px 0px rgb(238, 238, 238);
+    box-sizing: content-box;
+  
+  }
+  .collection-atividade{
+    margin-left: 10px;
+  }
+
+  .card-list{
+    border-style: solid;
+    border-width:5px;
+    border-color: green;
+  }
+  .titulo{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+  }
+  .secondary-content{
+      border:0px;
+     background-color: white;
+  }
+  
+ h6{
+     text-transform: uppercase;
+ }

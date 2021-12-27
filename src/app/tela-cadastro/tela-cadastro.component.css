@@ -1,0 +1,64 @@
+
+
+.button {
+font-family: 'trebuchet ms';
+color: #FFFFFF !important;
+font-size: 14px;
+text-shadow: 1px 1px 0px black;
+
+padding: 10px 50px;
+border-radius: 26px;
+border: 0px solid #5BA367;
+background-color: green;
+}
+.button:hover {
+color: #FCFFFD !important;
+background: #4ca75b;
+
+}
+
+
+.secondary-content{
+  border:0px;
+ background-color: white;
+}
+
+
+
+.nav-wrapper{
+  background-color: #242424;
+}
+.login{
+  margin-top:50px;
+ margin-left: 50px;
+ 
+}
+.login .card{
+  background-color: transparent;
+
+background-position: center;
+
+}
+
+.login label{
+  font-size:16px;
+  color:black;
+}
+.login input{
+  font-size:20px;
+  color:black;
+}
+.login select{
+  font-size:20px;
+  color:black;
+}
+.brand-logo{
+  background-image: url('src\app\tela-login\imagem\Adicionar um título.png');
+}
+
+.link{
+  background-color: transparent;
+  color:green;
+  border: 0;
+ 
+}

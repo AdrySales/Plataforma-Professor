@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+ 
+</head>
+
+<body>
+
+  <app-navbar></app-navbar>
+  
+  <div class="card">
+    <div class="card-action center-align green">
+      <h3>Cadastro de Componentes Curriculares</h3>
+    </div>
+    <div class="car-content">
+     
+
+      <form (ngSubmit)="onSubmit()" class="col s6">
+        <div class="input-field col s6">
+          <h5>Nome</h5>
+          <input type="text" placeholder="Descrição do Componente Curricular" [(ngModel)]="componenteCurricular.nome" name="Nome" required>
+        </div>
+
+        <div class="input-field col s6">
+          <h5>Carga horária</h5>
+          <input type="text" placeholder="Adicionar Componente Curricular" [(ngModel)]="componenteCurricular.ch" name="Carga Horária">
+        </div>
+
+        <div class="input-field col s6">
+          <h5>Curso relacionado</h5>
+         
+         <select class="form-control" name="curso"  type="text" placeholder="Adicionar Cursos" [(ngModel)]="componenteCurricular.curso" required>
+            <option></option>
+            <option *ngFor="let curso of ArrayCursos">
+              {{curso.nome}}
+            </option>
+          </select>
+         
+        </div>
+        <br>
+        <input type="submit" value="Cadastrar" class="btn green" >
+    <br>
+    <br>
+    <br>
+    </form>
+    </div>
+    </div>
+  
+
+    <div class="card">
+        <div class="card-action center-align green">
+          <h3>Lista de Componentes Curriculares</h3>
+        </div>
+      <div *ngIf="ArrayComponenteCurricular?.length > 0;else noAtividades">
+        <ul *ngFor="let componente of ArrayComponenteCurricular" class="collection">
+          <ul class="collection-atividade">
+            <li><a class="titulo">Nome:</a> {{componente.nome}}     
+              <button class="secondary-content">
+              <i (click)="editComponente($event,componente)" class="material-icons">editar</i>
+            </button>
+            <button class="secondary-content">
+              <i *ngIf="editState && componenteToEdit.id == componente.id" (click)="clearState()" class="material-icons">clear</i>
+            </button></li>
+    
+            <li><a class="titulo">Carga Horária:</a> {{componente.ch}}</li>
+            <li><a class="titulo">Curso:</a> {{componente.curso}}</li>
+           
+            <br>
+              <li>
+              <ul>
+              <div *ngIf="editState && componenteToEdit.id == componente.id">
+                <form (ngSubmit)="updateComponente(componente)">
+                  <li>
+                  <div class="row">
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Adicionar Nome" [(ngModel)]="componente.nome" name="Nome">
+                  </div>
+          
+                  <div class="input-field col s6">
+                    <input type="text" placeholder="Adicionar carga horária" [(ngModel)]="componente.ch" name="Carga Horária">
+                  </div>
+          
+                  <div class="input-field col s6">
+                    <select class="form-control" name="curso"  type="text" placeholder="Adicionar Cursos" [(ngModel)]="componenteCurricular.curso" required>
+                        <option *ngFor="let curso of ArrayCursos">
+                          {{curso.nome}}
+                        </option>
+                      </select>
+                  </div>
+                </div>
+    
+                <div class="row">
+                  <input type="submit" value="Atualizar" class="btn green" style="margin-right:10px ;">
+                  
+                  <button (click)="deleteComponente($event,componente)" class="btn red">Deletar Componente</button>
+                </div>
+    
+              </li>
+                </form>
+              </div>
+            </ul>
+            </li>
+          </ul>
+       
+        </ul>
+      </div>
+    </div>
+      <ng-template #noAtividades>
+        <hr>
+        <h5>Não há componentes cadastrados</h5>
+      </ng-template>
+
+</body>
+
+</html>

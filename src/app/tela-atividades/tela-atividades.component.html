@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+ 
+</head>
+
+<body>
+
+  <app-navbar></app-navbar>
+  
+  <div class="card">
+    <div class="card-action center-align green">
+      <h3>Cadastro de Atividades</h3>
+    </div>
+    <div class="car-content">
+     
+
+      <form (ngSubmit)="onSubmit()" class="col s6">
+        <div class="input-field col s6">
+          <h5>Descrição da Atividade</h5>
+          <input type="text" placeholder="Descrição da Atividade" [(ngModel)]="atividade.nome" name="Nome" required>
+        </div>
+
+        <div class="input-field col s6">
+          <h5>Carga horária</h5>
+          <input type="text" placeholder="Adicionar carga horária" [(ngModel)]="atividade.ch" name="Carga Horária">
+        </div>
+
+        <div class="input-field col s6">
+          <h5>Tipo de Atividade</h5>
+          <select class="form-control" id="" type="text" placeholder="Adicionar tipo"  name="Tipo" [(ngModel)]="atividade.tipo" required>
+          <option>Atividades de apoio ao ensino</option>
+          <option>Atividades de extensão</option>
+          <option>Atividades de pesquisa e pós-graduação</option>
+          <option>Atividades administrativo-pedagógicas</option>
+          </select>
+         
+        </div>
+        <br>
+        <input type="submit" value="Cadastrar" class="btn green" >
+    <br>
+    <br>
+    <br>
+    </form>
+    </div>
+    </div>
+  
+
+
+
+
+    <div class="card">
+    <div class="card-action center-align green">
+      <h3>Lista de Atividades</h3>
+    </div>
+    <br>
+
+ 
+
+    
+        <form>
+          <h6 class="white">Determine o tipo de Atividade:</h6>
+          <div class="input-field white">
+            
+            <select class="form-control" id="" type="text" placeholder="Pesquisar por tipo"  name="Tipo" [(ngModel)]="pesquisar" required>
+              <option></option>
+              <option>Atividades de apoio ao ensino</option>
+              <option>Atividades de extensão</option>
+              <option>Atividades de pesquisa e pós-graduação</option>
+              <option>Atividades administrativo-pedagógicas</option>
+              </select>
+          </div>
+        </form>
+      
+    
+
+<br>
+
+  <div *ngIf="atividades?.length > 0;else noAtividades">
+    <ul *ngFor="let atividade of atividades" >
+      <div *ngIf="atividade.tipo==pesquisar">
+      <ul class="collection-atividade">
+        <li><a class="titulo">Nome:</a> {{atividade.nome}}     
+          <button class="secondary-content">
+          <i (click)="editAtividade($event,atividade)" class="material-icons">editar</i>
+        </button>
+        <button class="secondary-content">
+          <i *ngIf="editState && atividadeToEdit.id == atividade.id" (click)="clearState()" class="material-icons">clear</i>
+        </button></li>
+
+        <li><a class="titulo">Carga Horária:</a> {{atividade.ch}}</li>
+        <li><a class="titulo">Tipo:</a> {{atividade.tipo}}</li>
+       
+        <br>
+          <li>
+          <ul>
+          <div *ngIf="editState && atividadeToEdit.id == atividade.id">
+            <form (ngSubmit)="updateAtividade(atividade)">
+              <li>
+              <div class="row">
+              <div class="input-field col s6">
+                <input type="text" placeholder="Adicionar Nome" [(ngModel)]="atividade.nome" name="Nome">
+              </div>
+      
+              <div class="input-field col s6">
+                <input type="text" placeholder="Adicionar carga horária" [(ngModel)]="atividade.ch" name="Carga Horária">
+              </div>
+      
+              <div class="input-field col s6">
+                <input type="text" placeholder="Adicionar tipo" [(ngModel)]="atividade.tipo" name="Tipo">
+              </div>
+            </div>
+
+            <div class="row">
+              <input type="submit" value="Atualizar" class="btn green" style="margin-right:10px ;">
+              
+              <button (click)="deleteAtividade($event,atividade)" class="btn red">Deletar Atividade</button>
+            </div>
+
+          </li>
+            </form>
+          </div>
+        </ul>
+        </li>
+      </ul>
+    </div> 
+    </ul>
+  </div>
+</div>
+  <ng-template #noAtividades>
+    <hr>
+    <h5>Não há atividades cadastradas</h5>
+  </ng-template>
+
+</body>
+
+</html>

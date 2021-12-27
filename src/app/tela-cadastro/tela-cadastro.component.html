@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+    
+    <app-navbar></app-navbar>
+   
+   <!--Área de Login-->
+   <div class="  login ">
+    <div class=" col s1 m4 offset-m4">
+      <div class="card">
+
+        <div class="card-action center-align green">
+          <h3>Cadastro de Usuário</h3>
+        </div>
+
+        <div class="card-content ">
+
+          <div class="form-field">
+    
+   
+        <label for="tipoDeUser">TIPO DE USUÁRIO</label>
+       
+       <select class="form-control" type="text" id="tipoDeUser"  [ngModelOptions]="{standalone: true}" [(ngModel)]="usuario.tipoDeUser"> 
+          <option value="Professor">Professor</option>
+          <option value="Administrador">Administrador</option>
+          <option value="Coordenador(a) Geral">Coordenador(a) Geral</option>
+          <option value="Diretor(a) De Ensino">Diretor(a) De Ensino</option>
+          <option value="Coordenador(a) De Pesquisa">Coordenador(a) De Pesquisa</option>
+          <option value="Coordenador(a) De Extensão">Coordenador(a) De Extensão</option>
+        </select>
+       
+     
+            
+       
+      </div>
+    
+    
+    
+    <br>
+    <div class="form-field">
+      <label for="senha">Nome</label>
+      <input id="nome" type="text" class="input" placeholder="Nome" [ngModelOptions]="{standalone: true}" [(ngModel)]="usuario.nome">
+    </div>
+    
+    <br>
+
+    <div class="form-field">
+      <label for="senha">EMAIL</label>
+      <input id="email" type="email" class="input" placeholder="Email" [ngModelOptions]="{standalone: true}" [(ngModel)]="usuario.email">
+    </div>
+    
+    <br>
+
+    <div class="form-field">
+      <label for="senha">SENHA</label>
+      <input id="senha" type="password" class="input" placeholder="Senha" [ngModelOptions]="{standalone: true}" [(ngModel)]="usuario.senha"> 
+    </div>
+    
+    <br>
+
+    <div class="form-field">
+      <label for="senha"> CONFIRMAÇÃO DE SENHA</label>
+      <input id="confirsenha" type="password" class="input" data-type="password" placeholder="Confirmação de senha" [ngModelOptions]="{standalone: true}"[(ngModel)]="usuario.confirsenha">
+    </div>
+    
+    <br>
+
+    <div class="form-field center">
+      <button id="cadastrar" value="Cadastrar" type="submit" class="button" (click) = "onSubmit()">Cadastrar</button>
+    </div>
+
+        </div>
+      </div>
+    </div>
+   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <router-outlet></router-outlet>
+  
+  
+ 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Título da página</title>
+    <meta charset="utf-8">
+       <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  </head>
+  <body>
+    
+       <app-navbar></app-navbar>
+       
+       <div *ngFor="let acesso of ArrayEstados" >
+           <div class="div" >
+               
+             
+           </div>
+       </div>
+       <div *ngIf="ArrayEstados?.length >0 ">
+     
+       <div class="row"  *ngFor="let acesso of ArrayEstados">
+        <div  *ngIf="acesso.aprovadoGeral==false && acesso.enviado==true">
+        <div class="col s12 m12">
+          <div class="card  horizontal green darken-1">
+            <div class="card-content black-text">
+              <span class="card-title">Plano Individual de Trabalho</span>
+              <p>Servidor: {{acesso.emailProfessor}}</p>
+              <p>Período: {{acesso.periodo}}</p>
+              <p>Ano: {{acesso.ano}}</p>
+            </div>
+            <div class="card-action black-text">
+     <button  type="submit" name="action" class="btn-large black" (click)="telaCorrecao(acesso.emailProfessor,acesso.periodo,acesso.ano)">Corrigir
+      <i class="material-icons right">send</i>
+     </button>
+    </div>  
+            
+        </div>
+        </div>
+      </div>
+        
+      </div>
+       </div>
+       <ng-template #noAtividades>
+        <hr>
+        <h5 class="center-align">Não há mais trabalhos a serem corrigidos!</h5>
+      </ng-template>   
+   
+</body>
+</html>

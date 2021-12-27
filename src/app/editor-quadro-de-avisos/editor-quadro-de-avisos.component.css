@@ -1,0 +1,21 @@
+.arredondar{
+    color:white;
+    border-style: solid;
+    border-width:50px;
+    border-color: rgb(55, 131, 55);
+  
+   background-color: rgb(55, 131, 55);
+  }
+  .textarea{
+    
+    height: 200px;
+}
+
+.titulo{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 15px;
+}
+.secondary-content{
+    border:0px;
+   background-color: white;
+}

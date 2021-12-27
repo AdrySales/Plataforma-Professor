@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RAD</title>
+<meta charset="utf-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-navbar></app-navbar>
+  <div class="row">
+    <div class="col s12 m6">
+    
+        <div class="card-content ">
+
+
+
+
+
+    <div class="card">
+      <div class="card-action center-align">
+        <h4>Quadro de informações</h4>
+      </div>
+      <br><br>
+      <div class="car-content">
+      
+      <p class="titulo">Professor:{{nomeDeUsuario}}</p>
+      <p class="titulo">Campus: Garanhuns </p>
+      <p class="titulo">Coordenação: : {{nomeCoordenador}} </p>
+  
+        </div>
+    </div>
+
+
+    <!----------------------Atividades de Ensino:Aulas + Apoio ao Ensino-------------------------------------------->
+    <div class="card">
+      <div class="card-action center-align">
+        <h4>Atividades de Ensino </h4>
+      </div>
+      <br><br>         
+      
+    <div *ngIf="ArrayAulas?.length > 0;else noAtividades">
+      <div *ngFor="let aulas of ArrayAulas" >
+          <ul *ngIf="aulas.emailProfessor==email && aulas.ano==anoAulas  && aulas.periodo==periodoAulas ">
+       
+          <li><a class="titulo">Componente Currícular:</a> {{aulas.componenteCurricular}}</li>
+          <li><a class="titulo">Curso:</a> {{aulas.curso}}</li>
+          <li><a class="titulo">CH Total do Componente:</a> {{aulas.chTotaldoComponente}}</li>
+          <li><a class="titulo">CH Semanal:</a> {{aulas.chSemanal}}</li>
+          <li><a class="titulo">CH de Preparação de Aulas:</a> {{aulas.chDePreparacao}}</li>
+          <br>
+         
+          <br>
+        
+        </ul>
+      </div>
+    </div>
+         
+   <ng-template #noAtividades>
+    <hr>
+    <h5>Não há atividades cadastradas</h5>
+  </ng-template>   
+      <div *ngIf="arrayApoioAoEnsino?.length > 0; else noAtividades">
+
+  <div *ngFor="let apoioAoEnsino of arrayApoioAoEnsino" >
+        <ul class="collection-atividade" *ngIf="apoioAoEnsino.emailProfessor==email  && apoioAoEnsino.ano==anoApoioAoEnsino && apoioAoEnsino.periodo==periodoApoioAoEnsino" >
+            <li><a class="titulo">Nome:</a> {{apoioAoEnsino.atividade}}</li>
+            <li><a class="titulo">Carga Horária:</a> {{apoioAoEnsino.chSemanal}}</li>
+            <li><a class="titulo">Local/Horário/Portaria:</a> {{apoioAoEnsino.lhp}}</li>
+            <br>
+          
+            <br>
+          
+        </ul>
+      </div>
+      </div>
+     
+    
+      <ng-template #noAtividades>
+        <hr>
+        <h5>Não há atividades cadastradas</h5>
+      </ng-template>   
+
+  </div>
+   <!----------------------------------------Atividade de Pesquisa e Pós-------------------------------------------->
+   <div class="card">
+    <div class="card-action center-align">
+      <h4>Atividades de Pesquisa e Pós-Graduação </h4>
+    </div>   
+    <div *ngIf="ArrayPesquisa?.length > 0;else noAtividades">
+      
+      <div *ngFor="let pesquisa of ArrayPesquisa" >
+        <br>
+        <ul *ngIf=" pesquisa.emailProfessor==email && pesquisa.ano==anoPesquisa && pesquisa.periodo==periodoPesquisa" >
+
+          <li><a class="titulo">Descrição:</a> {{pesquisa.atividade}}</li>
+          <li><a class="titulo">Carga Horária:</a> {{pesquisa.chSemanal}}</li>
+          
+        </ul>
+      </div>
+    </div>
+  
+ <ng-template #noAtividades>
+  <hr>
+  <h5>Não há atividades cadastradas</h5>
+</ng-template>        
+  </div>
+
+     <!----------------------------------------Atividade de Extensao-------------------------------------------->
+     <div class="card">
+      <div class="card-action center-align">
+        <h4>Atividades de Extensão </h4>
+      </div>         
+      <div *ngIf="ArrayExtensao?.length > 0;else noAtividades">
+        <div *ngFor="let extensao of ArrayExtensao" >
+         
+              <ul *ngIf="extensao.emailProfessor==email && extensao.ano==anoExtensao  && extensao.periodo==periodoExtensao">
+           <br>
+            <li><a class="titulo">Projeto:</a> {{extensao.projeto}}</li>
+            <li><a class="titulo">Carga Horária Semanal:</a> {{extensao.chSemanal}}</li>
+            <li><a class="titulo">início:</a> {{extensao.inicio}}</li>
+            <li><a class="titulo">Término:</a> {{extensao.termino}}</li>
+            <li><a class="titulo">Participação:</a> {{extensao.participacao}}</li>
+          </ul>
+       
+          </div>
+       
+        </div>
+      
+   <ng-template #noAtividades>
+    <hr>
+    <h5>Não há atividades cadastradas</h5>
+  </ng-template>        
+    </div>
+
+    <!----------------------------------------Atividade de Administrativo-------------------------------------------->
+    <div class="card">
+      <div class="card-action center-align">
+        <h4>Atividades Administrativo-Pedagógicas</h4>
+      </div>
+       
+      <div *ngIf="ArrayAdministrativo?.length > 0;else noAtividades">   
+      <div *ngFor="let administrativo of ArrayAdministrativo" >
+        <ul *ngIf=" administrativo.emailProfessor==email && administrativo.ano==anoAdministrativo && administrativo.periodo==periodoAdministrativo">
+         
+           <br>
+        <li><a class="titulo">Atividade:</a> {{administrativo.atividade}}</li>
+        <li><a class="titulo">Carga Horária Semanal:</a> {{administrativo.chSemanal}}</li>
+        <li><a class="titulo">início:</a> {{administrativo.inicio}}</li>
+        <li><a class="titulo">Término:</a> {{administrativo.termino}}</li>
+        <li><a class="titulo">Portaria:</a> {{administrativo.portaria}}</li>
+          
+       
+        </ul>
+        </div>
+      </div>
+   <ng-template #noAtividades>
+    <hr>
+    <h5>Não há atividades cadastradas</h5>
+  </ng-template>        
+    </div>
+
+
+
+  <!-----------------------------------Distribuição da carga horária------------------------------------------->
+<div class="card">
+  <div class="card-action center-align ">
+    <h4>Distribuição da Carga-Horária</h4>
+  </div>
+  <br><br>
+  <div class="car-content">
+    <p>Aulas: {{chTotalDeAulas}}</p>
+    <p>Preparação de Aulas: {{chTotalDePreparacaoDeAulas}} </p>
+    <p>Apoio ao Ensino: {{chTotalDeApoioAoEnsino}} </p>
+    <p>Pesquisa: {{chTotalDePesquisa}} </p>
+    <p>Extensão: {{chTotalDeExtensao}} </p>
+    <p>Administrativo-Pedagógicas: {{chTotalDeAdministrativo}} </p>
+    <p>Soma Total: {{chTotal}} </p>
+  </div>
+</div>
+
+<br>
+</div>
+<div class="card-action">
+</div>
+</div>
+
+
+<!--------------------------------------------------Área dos comentários------------------------------------------->
+<div class=" col s12 m6  ">
+
+  <div class="card">
+      <h5 class="center-align">Comentários a cerca das Atividades Desenvolvidas</h5>
+  </div>
+
+
+
+
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRad()">
+<div *ngIf="ArrayAulas?.length > 0">
+  <div *ngFor="let aulas of ArrayAulas" >
+      <div *ngIf="aulas.emailProfessor==email && aulas.ano==anoAulas  && aulas.periodo==periodoAulas ">
+        <div class="card"  (change)="preencheId(aulas.id)">
+            <a>Componente Currícular:{{aulas.componenteCurricular}}</a><br><a>Curso:{{aulas.curso}}</a>
+          
+          <textarea  id="textarea"class="textarea" name="textarea" [(ngModel)]="comentarioRad.comentario"></textarea>
+        
+              <input type="submit" value="Comentar" class="btn green" name="comentar">
+            
+    </div>
+  </div>
+</div>
+</div>  
+</form>
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRad()">
+<div *ngIf="arrayApoioAoEnsino?.length > 0">
+<div *ngFor="let apoioAoEnsino of arrayApoioAoEnsino" >
+    <div *ngIf="apoioAoEnsino.emailProfessor==email  && apoioAoEnsino.ano==anoApoioAoEnsino && apoioAoEnsino.periodo==periodoApoioAoEnsino" >
+      <div class="card"  (change)="preencheId(apoioAoEnsino.id)">
+          <a>Nome: {{apoioAoEnsino.atividade}}</a><br><a>Local/Horário/Portaria:{{apoioAoEnsino.lhp}}</a>
+        <textarea  class="textarea white" name="textarea" [(ngModel)]="comentarioRad.comentario"></textarea>
+        <input type="submit" value="Comentar" class="btn green" name="comentar">
+    </div>   
+  </div>
+  </div>
+  </div>
+  </form>
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRad()">
+  <div *ngIf="ArrayPesquisa?.length > 0">
+    
+    <div *ngFor="let pesquisa of ArrayPesquisa" >
+      <div *ngIf=" pesquisa.emailProfessor==email && pesquisa.ano==anoPesquisa && pesquisa.periodo==periodoPesquisa" >
+        <div class="card"  (change)="preencheId(pesquisa.id)">
+            
+        <a class="titulo">Descrição: {{pesquisa.atividade}}</a>
+        <br>
+        <a class="titulo">Carga Horária:{{pesquisa.chSemanal}}</a>
+          <textarea  class="textarea white" name="textarea" [(ngModel)]="comentarioRad.comentario"></textarea>
+          <input type="submit" value="Comentar" class="btn green" name="comentar">
+      </div>
+        
+    </div>
+    </div>
+  </div>       
+</form>
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRad()">
+  <div *ngIf="ArrayExtensao?.length > 0">
+    <div *ngFor="let extensao of ArrayExtensao" >
+     
+          <div *ngIf="extensao.emailProfessor==email && extensao.ano==anoExtensao  && extensao.periodo==periodoExtensao">
+       <div class="card"  (change)="preencheId(extensao.id)">
+   
+          <a class="titulo">Projeto:{{extensao.projeto}}</a> 
+          <br>
+          <a class="titulo">início:{{extensao.inicio}}</a> 
+          <br>
+          <a class="titulo">Término:{{extensao.termino}}</a> 
+          <br>
+          <a class="titulo">Participação:{{extensao.participacao}}</a> 
+        <textarea  class="textarea white" name="textarea" [(ngModel)]="comentarioRad.comentario"></textarea>
+        <input type="submit" value="Comentar" class="btn green" name="comentar">
+  
+    </div>
+
+          </div>
+   
+      </div>
+   
+    </div>
+  </form>
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRad()">
+   
+  <div *ngIf="ArrayAdministrativo?.length > 0">   
+  <div *ngFor="let administrativo of ArrayAdministrativo" >
+    <div *ngIf=" administrativo.emailProfessor==email && administrativo.ano==anoAdministrativo && administrativo.periodo==periodoAdministrativo">
+     
+      <div class="card"  (change)="preencheId(administrativo.id)">
+  
+          <a class="titulo">Atividade:{{administrativo.atividade}}</a> 
+    <br>
+    <a class="titulo">Portaria:{{administrativo.portaria}}</a> 
+    
+        <textarea class="textarea white" name="textarea" [(ngModel)]="comentarioRad.comentario"></textarea>
+      </div>
+        <input type="submit" value="Comentar" class="btn green" name="comentar">
+
+    
+    </div>
+    </div>
+  </div>
+</form>
+<!-------------------------------------------------------------------------------------------------------->
+<form (ngSubmit)="onSubmitComentariosRadFinal()" >
+<div class="card">
+ 
+    <h5 class="center-align">Observações</h5>
+  <textarea  class="textarea white" name="textarea" [(ngModel)]="comentarioRadFinal.comentario"></textarea>
+
+
+</div>
+<div class="card black">
+           
+  <input type="submit" value="Enviar"  name="enviar"class="btn black" >
+</div>
+</form>
+
+
+
+</div>
+
+</div>
+</body>
+
+</html>

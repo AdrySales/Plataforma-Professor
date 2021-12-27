@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Escolha do Período</title>
+<meta charset="utf-8">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-navbar></app-navbar>
+<br><br><br><br><br>
+  <div class="card center-align">
+      <h3>Selecionar o Período do PIT</h3>
+      <br><br>
+      <form (ngSubmit)="adicionarAnoePeriodo()"> 
+      <select name="periodo" class="form-control" [(ngModel)]="periodo.periodo">
+        <option>Primeiro Período</option>
+        <option>Segundo Período</option>
+    </select>
+    <br><br><br>
+      <select name="ano" class="form-control" [(ngModel)]="periodo.ano">
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+          <option>2026</option>
+          <option>2027</option>
+          <option>2028</option>
+          <option>2029</option>
+          <option>2030</option>
+      </select>
+      <br><br>
+      <button type="submit" value="Voltar" class="btn green" >IR PARA O PIT</button>
+    </form>
+  </div>
+  </body>
+  </html>
+

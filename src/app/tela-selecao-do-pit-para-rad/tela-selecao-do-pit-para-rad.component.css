@@ -1,0 +1,20 @@
+.botao{
+    border:transparent;
+    background-color:rgb(8, 8, 8);
+    
+    
+}
+h4{
+    font-style: initial;
+    font-optical-sizing: 5px;
+    font-weight: bolder;
+    color:#242424
+}
+
+.card{
+    background-color: rgb(20, 97, 30);
+    
+}
+.card-action{
+color:white
+}

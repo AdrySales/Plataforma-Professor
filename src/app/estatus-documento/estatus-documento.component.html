@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+ 
+</head>
+
+<body>
+
+  <app-navbar></app-navbar>
+
+
+
+  <div class="card">
+    <div class="card-action center-align ">
+        <h3>PITs Aprovados</h3>
+        </div>
+   </div>
+
+  
+ 
+   <div *ngIf="ArrayEstadosDoPitPegar?.length > 0;else noAtividades">
+    <div *ngFor="let pit of ArrayEstadosDoPitPegar" >
+      
+      <ul  class="collection">
+      
+          <div class="row" >
+            <div class="col s12 m6">
+             <div class="card darken">
+        
+        PIT
+        <br>
+        Ano: {{pit.ano}}
+        <br>
+        Perídodo:{{pit.periodo}}
+        
+        <br>
+        _______________________________________________________________________________________________________
+        <br>
+        Status Coordenador de Curso: {{pit.aprovadoGeral}}
+  
+         
+        <br>
+        Status Direção de Ensino: {{pit.aprovadoDirecaoDeEnsino}}
+        <br>
+       Status Coordenador de Pesquisa: {{pit.aprovadoPesquisa}}
+       <br>
+       Status Coordenador de Extensão: {{pit.aprovadoExtensao}}
+      </div>
+    </div>
+    </div>
+  
+        </ul>
+        </div>
+  </div>
+
+
+  <ng-template #noAtividades>
+  <hr>
+  <h5>Não há nenhum PIT cadastrado.</h5>
+  </ng-template>  
+
+
+
+
+
+   <div class="card">
+    <div class="card-action center-align ">
+        <h3> RADs Aprovados</h3>
+        </div>
+   </div>
+
+   
+   <div *ngIf="ArrayEstadosDoRadPegar?.length > 0;else noAtividades">
+    <div *ngFor="let rad of ArrayEstadosDoRadPegar" > 
+      <ul class="collection">
+      
+          <div class="row" >
+            <div class="col s12 m6">
+             <div class="card darken">
+        
+        Rad
+        <br>
+        Ano:{{rad.periodo}}
+        <br>
+        Período:{{rad.periodo}}
+        <br>
+        _______________________________________________________________________________________________________
+        <br>
+        Status Coordenador de Curso: {{rad.aprovadoGeral}}
+        <br>
+        Status Direção de Ensino: {{rad.aprovadoDirecaoDeEnsino}}
+        <br>
+       Status Coordenador de Pesquisa: {{rad.aprovadoPesquisa}}
+       <br>
+       Status Coordenador de Extensão: {{rad.aprovadoExtensao}}
+      </div>
+    </div>
+    </div>
+        </ul>
+        </div>
+  </div>
+
+
+  <ng-template #noAtividades>
+  <hr>
+  <h5>Não há nenhum PIT cadastrado.</h5>
+  </ng-template>  
+
+
+  </body>
+  </html>

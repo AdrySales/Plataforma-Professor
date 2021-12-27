@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Título da página</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+   
+  </head>
+
+  <body>
+    <div class="tela">
+      <!--Navbar-->
+ 
+ <!--Navbar-->
+ <nav>
+  <div class=" nav-wrapper">
+    <div id="sidebar" >
+     </div>
+    </div>
+     </nav> 
+
+     <br>
+    	  <!--Área de Login-->
+    <div class="card-action ">
+      <div class=" col s1 m4 offset-m4  transparent">
+        <div class="card transparent">
+
+          <div class="card-action center-align transparent">
+            <h3>Seja bem vindo!</h3>
+          </div>
+
+          <div class="card-content text-white">
+            <div class="form-field">
+        <label for="email">email</label>
+        <input type="text" class="text-white" name="" placeholder="Email" [(ngModel)]="email" >
+      </div><br>
+      <div class="form-field">
+        <label for="senha">senha</label>
+        <input type="password" class="text-white" name="" placeholder="Senha" [(ngModel)]="senha">
+      </div><br>
+      <div class="form-field center-align">
+         <button value="Logar" type="submit" class="btn-large green" (click) = "login();getuser();">Logar</button>
+      </div>
+          </div>
+        </div>
+        
+      </div>
+     
+
+  </div>
+         
+
+
+
+    </div>
+   
+        
+   
+
+    <router-outlet></router-outlet>
+
+        
+
+
+  </body>
+</html>
+
+

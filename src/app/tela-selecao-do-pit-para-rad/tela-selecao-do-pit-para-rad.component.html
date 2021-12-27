@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+ 
+</head>
+
+<body>
+
+  <app-navbar></app-navbar>
+<div class="center">
+    <h4>Escolher o perído do RAD a ser acessado</h4>
+</div>
+
+
+   
+      
+        <div *ngFor="let estado of ArrayEstados" >
+          <ul *ngIf=" pegarEstado(estado)==false " class="collection">
+      <div class="row" >
+        <div class="col s12 m6">
+         <div class="card">
+
+    <button class="card-action " value="criar" name="criar"  (click)="irParaRad(estado.emailProfessor,estado.ano,estado.periodo)" >
+   Relatório de Atividades Realizadas
+    <br>
+   Ano: {{estado.ano}}
+    <br>
+    Período: {{estado.periodo}}
+    </button>
+    
+  </div>
+</div>
+</div>
+    </ul>
+
+    </div>
+  
+  
+     
+    <ng-template #noAtividades>
+    <hr>
+    <h5>Não há nenhum Rad cadastrado por você ainda.</h5>
+    </ng-template>  
+
+
+
+      </body>
+</html>
+
+

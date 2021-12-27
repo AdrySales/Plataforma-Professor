@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "projeto-pratico": {
+      "hosting": {
+        "project": [
+          "projeto-pratico"
+        ]
+      }
+    }
+  }
+}

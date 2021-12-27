@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Título da página</title>
+    <meta charset="utf-8">
+        <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  </head>
+  <body>
+    
+       <app-navbar></app-navbar>
+       <div class="card">
+        <div class="card-action center-align green">
+          <h3>Cadastro de Componentes Curriculares</h3>
+        </div>
+        <div class="car-content">
+         
+        
+    <form (ngSubmit)="postarAviso()" >
+      <BR>
+      <h6>DIGITE AQUI:</h6>
+      <textarea [(ngModel)]="aviso.aviso" class="textarea white" name="textarea"></textarea>
+         <br>
+          <input type="submit" value="Enviar"  name="enviar"class="btn black" >
+      
+  </form>
+</div>
+</div>
+
+   
+
+
+
+<div class="card">
+  <div class="card-action center-align green">
+    <h3>Lista de Avisos</h3>
+  </div>
+<div *ngIf="ArrayAvisos?.length > 0;else noAtividades">
+  <ul *ngFor="let aviso of ArrayAvisos" class="collection">
+    <ul class="collection-atividade">
+      <li><a class="titulo">Aviso:</a> {{aviso.aviso}}   
+
+            <br>
+            <button (click)="deleteAvisos(aviso)" class="btn red">Deletar Aviso</button>
+          </li>
+      </ul>
+ 
+    </ul>
+
+</div>
+</div>
+<ng-template #noAtividades>
+  <hr>
+  <h5>Não há avisos cadastrados</h5>
+</ng-template>
+
+</body>
+</html>
+

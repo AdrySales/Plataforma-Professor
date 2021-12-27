@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie-edge">
+      <title>Responsive Side Menu</title>
+  
+    </head>
+    <body>
+
+       <nav class="navbar">
+           <span class="open-slide">
+              <a  (click)="openSlideMenu()">
+                <button (click)="tipoDeUser()">
+                  <svg width="30" height="30">
+                    <path d="M0,5 30,5" stroke="green" stroke-width="5"/>
+                    <path d="M0,14 30,14" stroke="green" stroke-width="5"/>
+                    <path d="M0,23 30,23" stroke="green" stroke-width="5"/>
+
+                </svg>
+                </button>
+                 
+              </a>  
+           </span>
+
+           
+       </nav>
+
+       <div id="side-menu" class="side-nav"  >
+        
+       
+          <a  class="btn-close" stroke="green"><button (click)="closeSlideMenu()">&times;</button></a>
+          <a class="link"><button class="link"  (click)="funcao(posicao1)">{{posicao1}}</button></a>        
+          <a class="link"><button class="link" (click)=" funcao(posicao2)">{{posicao2}}</button></a>   
+          <a class="link"><button class="link" (click)=" funcao(posicao3)">{{posicao3}}</button></a>   
+          <a class="link"><button class="link" (click)=" funcao(posicao4)">{{posicao4}}</button></a>   
+          <a class="link"><button class="link" (click)=" funcao(posicao5)">{{posicao5}}</button></a>   
+          <a class="link"><button class="link" (click)=" funcao(posicao6)">{{posicao6}}</button></a>   
+          <a class="link"><button class="link" (click)=" funcao(posicao7)">{{posicao7}}</button></a>
+          <BR><BR><BR><BR> <BR><BR><BR>
+          <a class="link"><button class="link" (click)="linkSair()">Sair</button></a>
+       
+         
+           
+
+       </div>
+       
+      
+
+
+  
+    </body>
+</html>

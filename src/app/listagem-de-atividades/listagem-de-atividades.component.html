@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PIT</title>
+<meta charset="utf-8">
+<!-- Compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-navbar></app-navbar>
+   
+
+
+    <div class="card">
+      <div class="card-action center-align">
+        <h4>Quadro de informações</h4>
+      </div>
+      <br><br>
+      <div class="car-content">
+      
+      <p class="titulo">Professor:{{nomeDeUsuario}}</p>
+      <p class="titulo">Campus: Garanhuns </p>
+      <p class="titulo">Coordenação: {{nomeCoordenador}} </p>
+        </div>
+    </div>
+
+
+    <!----------------------Aulas-------------------------------------------->
+    <div class="card">
+      <div class="card-action center-align ">
+        <h3>Lista de Aulas</h3>
+      </div>
+    <div *ngIf="ArrayAulas?.length > -1;else noAtividades">
+      <ul *ngFor="let aula of ArrayAulas" >
+        <ul class="collection-atividade" *ngIf=" aula.emailProfessor==email && aula.ano==ano && aula.periodo==periodo">
+          <li><a class="titulo">Componente Currícular:</a> {{aula.componenteCurricular}}</li>
+            
+            
+            <button class="secondary-content">
+            <i (click)="editAula($event, aula)" class="material-icons">editar</i>
+          </button>
+          <button class="secondary-content">
+            <i *ngIf="editState==true &&  idUtilizadoAulas ==aula.id" (click)="clearStateAula()" class="material-icons">clear</i>
+          </button>
+  
+
+          <li><a class="titulo">Curso:</a> {{aula.curso}}</li>
+          <li><a class="titulo">CH Total do Componente:</a> {{aula.chTotaldoComponente}}</li>
+          <li><a class="titulo">CH Semanal:</a> {{aula.chSemanal}}</li>
+          <li><a class="titulo">CH de Preparação de Aulas:</a> {{aula.chDePreparacao}}</li>
+         
+          <br>
+            <li>
+            <ul>
+            <div *ngIf="editState==true && idUtilizadoAulas== aula.id">
+              <form (ngSubmit)="updateAula(aula)">
+                <li>
+                <div class="row">
+                <div class="input-field col s6">
+                  <h6>Curso</h6>
+                  <select class="form-control" placeholder="Curso" [(ngModel)]="aula.curso" name="curso" (click)="pegarComponentes(aula.curso)" >
+                    <option></option>
+                    <option *ngFor="let curso of cursos">
+                      {{curso.nome}}
+                    </option>
+                  </select>
+               <br>
+               <h6>Componente Curricular</h6>
+                  <select type="text" placeholder="Componente" class="form-control" [(ngModel)]="aula.componenteCurricular" name="componenteCurricular" >
+                    <option></option>
+                    <option *ngFor="let componente of componentesCurricularesDoCurso">
+                      {{componente}}
+                    </option>
+                  </select>
+                  
+
+                  <h6>CH total do componente</h6>
+                  <input [(ngModel)]="aula.chTotaldoComponente" placeholder="CH total do componente" name="chTotaldoComponente">
+                  <h6>CH semanal</h6>
+                  <input [(ngModel)]="aula.chSemanal" placeholder="CH semanal"name="chSemanal">
+                  <h6>CH de preparação de Aulas</h6>
+                  <input [(ngModel)]="aula.chDePreparacao" placeholder="CH de preparação" name="chDePreparacao">
+                
+                  <input value={{email}} [(ngModel)]="aula.emailProfessor" disabled="disabled" class="invisible" name="email">
+              
+                  <input type="submit" (click)="edicao"value="Atualizar" class="btn green" style="margin-right:10px ;">
+                  <button (click)="deleteAula($event,aula)" class="btn red">Deletar Atividade</button>
+              </div>
+  </div>
+            </li>
+              </form>
+            </div>
+          </ul>
+          </li>
+          
+        </ul>
+     
+      </ul>
+     
+    </div>
+<ng-template #edicao>
+  <span>I am toast content</span><button class="btn-flat toast-action">Undo</button>
+</ng-template>
+    <ng-template #noAtividades>
+      <hr>
+      <h5>Não há atividades cadastradas</h5>
+    </ng-template>
+  </div>
+
+
+
+    
+    <!----------------------Apoio ao Ensino-------------------------------------------->
+
+<div class="card">
+  <div class="card-action center-align ">
+    <h3>Lista de Atividades de Apoio ao Ensino</h3>
+  </div>
+<div *ngIf="arrayApoioAoEnsino?.length > -1;else noAtividades">
+  <ul *ngFor="let apoioAoEnsino of arrayApoioAoEnsino" >
+    <ul  *ngIf="apoioAoEnsino.emailProfessor==email && apoioAoEnsino.ano==ano && apoioAoEnsino.periodo==periodo">
+      <li><a class="titulo">Nome:</a> {{apoioAoEnsino.atividade}}</li>
+        
+        
+        <button class="secondary-content">
+        <i (click)="editApoioAoEnsino($event, apoioAoEnsino)" class="material-icons">editar</i>
+      </button>
+      <button class="secondary-content">
+        <i *ngIf="editState==true &&   idUtilizadoApoio==apoioAoEnsino.id" (click)="clearStateApoioAoEnsino()" class="material-icons">clear</i>
+      </button>
+
+
+      <li><a class="titulo">Carga Horária:</a> {{apoioAoEnsino.chSemanal}}</li>
+            <li><a class="titulo">Local/Horário/Portaria :</a> {{apoioAoEnsino.lhp}}</li>
+     
+      <br>
+        <li>
+        <ul>
+        <div *ngIf="editState==true &&   idUtilizadoApoio==apoioAoEnsino.id">
+          <form (ngSubmit)="updateApoioAoEnsino(apoioAoEnsino)">
+            <li>
+            <div class="row">
+            <div class="input-field col s6">
+
+              <h6>Nome</h6>
+              <select class="form-control" [(ngModel)]="apoioAoEnsino.atividade" (change)="preencheChApoio()"
+              name="atividade">
+              <option></option>
+              <option *ngFor="let atividade of ArrayAtivDeApoioAoEnsino">
+                {{atividade.nome}}
+              </option>
+            </select>
+              <h6>CH semanal</h6>
+              <input [(ngModel)]="apoioAoEnsino.chSemanal" placeholder="CH semanal"name="chSemanal">
+              <h6>Local/Horário/Portaria : </h6>
+              <input [(ngModel)]="apoioAoEnsino.lhp" placeholder="lhp" name="lhp">
+             
+              <input value={{email}} [(ngModel)]="apoioAoEnsino.emailProfessor" disabled="disabled" class="invisible" name="email">
+              
+              <input type="submit" value="Atualizar" class="btn green" style="margin-right:10px ;">
+              <button (click)="deleteApoioAoEnsino($event,apoioAoEnsino)" class="btn red">Deletar Atividade</button>
+          </div>
+</div>
+        </li>
+          </form>
+        </div>
+      </ul>
+      </li>
+      
+    </ul>
+ 
+  </ul>
+ 
+</div>
+
+<ng-template #noAtividades>
+  <hr>
+  <h5>Não há atividades cadastradas</h5>
+</ng-template>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!----------------------------------------Atividade de Pesquisa e Pós-------------------------------------------->
+
+
+<div class="card">
+  <div class="card-action center-align ">
+    <h3>Atividades de Pesquisa e Pós-Graduação</h3>
+  </div>
+<div *ngIf="ArrayPesquisa?.length > -1;else noAtividades">
+  <ul *ngFor="let pesquisa of ArrayPesquisa" >
+    <ul class="collection-atividade" *ngIf=" pesquisa.emailProfessor==email && pesquisa.ano==ano && pesquisa.periodo==periodo">
+      <li><a class="titulo">Descrição:</a> {{pesquisa.atividade}}</li>
+        
+        
+        <button class="secondary-content">
+        <i (click)="editPesquisa($event, pesquisa)" class="material-icons">editar</i>
+      </button>
+      <button class="secondary-content">
+        <i *ngIf="editState && idUtilizadoPesquisa==pesquisa.id" (click)="clearStatePesquisa()" class="material-icons">clear</i>
+      </button>
+      <li><a class="titulo">Carga Horária:</a> {{pesquisa.chSemanal}}</li>
+      <br>
+        <li>
+        <ul>
+          <div *ngIf="editState && idUtilizadoPesquisa== pesquisa.id">
+            <form (ngSubmit)="updatePesquisa(pesquisa)">
+              <li>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <h6>Descrição</h6>
+                    <select class="form-control" [(ngModel)]="pesquisa.atividade" (change)="preencheChPesquisa()" name="atividade">
+                      <option></option>
+                      <option *ngFor="let atividade of ArrayAtivDePesquisa">
+                        {{atividade.nome}}
+                      </option>
+                    </select>
+                    <h6>Carga Horária</h6>
+                    <input [(ngModel)]="pesquisa.chSemanal" placeholder="CH semanal"name="chSemanal">
+                   
+                    <input value={{email}} [(ngModel)]="pesquisa.emailProfessor" disabled="disabled" class="invisible" name="email">
+                    
+                    <input type="submit" value="Atualizar" class="btn green" style="margin-right:10px ;">
+                    <button (click)="deletePesquisa($event,pesquisa)" class="btn red">Deletar Atividade</button>
+                     
+                </div>
+               </div>
+            </li>
+            </form>
+          </div>
+      </ul>
+      </li>
+      
+    </ul>
+ 
+  </ul>
+ 
+</div>
+
+<ng-template #noAtividades>
+  
+  <h5>Não há atividades cadastradas</h5>
+</ng-template>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <!----------------------------------------Atividade de Extensao-------------------------------------------->        
+
+
+  <div class="card">
+    <div class="card-action center-align ">
+      <h3>Atividades de Extensão</h3>
+    </div>
+  <div *ngIf="ArrayExtensao?.length > -1;else noAtividades">
+    <ul *ngFor="let extensao of ArrayExtensao" >
+      <ul class="collection-atividade" *ngIf="extensao.emailProfessor==email && extensao.ano==ano && extensao.periodo==periodo">
+        <li><a class="titulo">Projeto:</a> {{extensao.projeto}}</li>
+          
+          
+          <button class="secondary-content">
+          <i (click)="editExtensao($event, extensao)" class="material-icons">editar</i>
+        </button>
+        <button class="secondary-content">
+          <i *ngIf="editState && idUtilizadoExtensao==extensao.id" (click)="clearStateExtensao()" class="material-icons">clear</i>
+        </button>
+        <li><a class="titulo">Carga Horária Semanal:</a> {{extensao.chSemanal}}</li>
+        <li><a class="titulo">início:</a> {{extensao.inicio}}</li>
+        <li><a class="titulo">Término:</a> {{extensao.termino}}</li>
+        <li><a class="titulo">Participação:</a> {{extensao.participacao}}</li>
+        <br>
+          <li>
+          <ul>
+            <div *ngIf="editState && idUtilizadoExtensao== extensao.id">
+
+          
+              <form  (ngSubmit)="updateExtensao(extensao)">
+                <li>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <h6>Projeto</h6>
+                      <input [(ngModel)]="extensao.projeto" placeholder="atividade" name="atividade">
+                      <h6>Carga Horária Semanal</h6>
+                      <input [(ngModel)]="extensao.chSemanal"  name="chSemanal">
+                      <h6>Início</h6>
+                      <input type="date" [(ngModel)]="extensao.inicio" name="inicio">
+                      <h6>Termino</h6>
+                      <input type="date" [(ngModel)]="extensao.termino" name="termino">
+                      <input value={{email}} [(ngModel)]="extensao.emailProfessor" disabled="disabled" class="invisible" name="email">
+                    </div>
+                  </div>
+               </li>
+
+
+    <button id="atualizar"value="submit" class="btn btn-info green" data-toggle="modal" style="margin-right:10px ;">Atualizar</button>
+                    
+               <button id="excluir"(click)="deleteExtensao($event,extensao)" class="btn red">Deletar Atividade</button>
+              </form>
+
+               
+
+  
+            </div>
+        </ul>
+        </li>
+        
+      </ul>
+   
+    </ul>
+   
+  </div>
+ 
+              
+
+  <ng-template #noAtividades>
+    
+    <h5>Não há atividades cadastradas</h5>
+  </ng-template>
+
+  </div>
+ 
+  
+  
+
+      <!----------------------------------------Atividade de Administrativo-------------------------------------------->
+
+<div class="card">
+  <div class="card-action center-align ">
+    <h3>Atividades Administrativo-Pedagógicas</h3>
+  </div>
+<div *ngIf="ArrayAdministrativo?.length > -1;else noAtividades">
+  <ul *ngFor="let administrativo of ArrayAdministrativo" >
+    <ul class="collection-atividade" *ngIf="administrativo.emailProfessor==email && administrativo.ano==ano && administrativo.periodo==periodo">
+      <li><a class="titulo">Descrição da Atividade:</a> {{administrativo.atividade}}</li>
+        
+        
+        <button class="secondary-content">
+        <i (click)="editAdministrativo($event,administrativo)" class="material-icons">editar</i>
+      </button>
+      <button class="secondary-content">
+        <i *ngIf="editState && idUtilizadoAdministrativo==administrativo.id" (click)="clearStateAdministrativo()" class="material-icons">clear</i>
+      </button>
+      <li><a class="titulo">Carga Horária Semanal:</a> {{administrativo.chSemanal}}</li>
+      <li><a class="titulo">início:</a> {{administrativo.inicio}}</li>
+      <li><a class="titulo">Término:</a> {{administrativo.termino}}</li>
+      <li><a class="titulo">Portaria:</a> {{administrativo.portaria}}</li>
+      <br>
+        <li>
+        <ul>
+          <div *ngIf="editState && idUtilizadoAdministrativo== administrativo.id">
+            <form (ngSubmit)="updateAdministrativo(administrativo)">
+              <li>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <h6>Descrição da Atividade</h6>
+                    <input [(ngModel)]="administrativo.atividade"name="atividade">
+                    <h6>Carga Horária Semanal</h6>
+                    <input [(ngModel)]="administrativo.chSemanal"  name="chSemanal">
+                    <h6>Início</h6>
+                    <input type="date"[(ngModel)]="administrativo.inicio" name="inicio">
+                    <h6>Término</h6>
+                    <input type="date"[(ngModel)]="administrativo.termino" name="termino">
+                    <h6>Portaria</h6>
+                    <input [(ngModel)]="administrativo.portaria" name="portaria">
+                    
+                    <input value={{email}} [(ngModel)]="administrativo.emailProfessor" disabled="disabled" class="invisible" name="email">
+                    
+                    <input type="submit" value="Atualizar" class="btn green" style="margin-right:10px ;">
+                    <button (click)="deleteAdministrativo($event,administrativo)" class="btn red">Deletar Atividade</button>
+                     
+                </div>
+               </div>
+            </li>
+            </form>
+          </div>
+      </ul>
+      </li>
+      
+    </ul>
+ 
+  </ul>
+ 
+</div>
+
+<ng-template #noAtividades>
+  
+  <h5>Não há atividades cadastradas</h5>
+</ng-template>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-----------------------------------Distribuição da carga horária------------------------------------------->
+  <div class="card">
+    <div class="card-action center-align ">
+      <h4>Distribuição da Carga-Horária</h4>
+    </div>
+    <br><br>
+    <div class="car-content">
+      <p>Aulas: {{chTotalDeAulas}}</p>
+      <p>Preparação de Aulas: {{chTotalDePreparacaoDeAulas}} </p>
+      <p>Apoio ao Ensino: {{chTotalDeApoioAoEnsino}} </p>
+      <p>Pesquisa: {{chTotalDePesquisa}} </p>
+      <p>Extensão: {{chTotalDeExtensao}} </p>
+      <p>Administrativo-Pedagógicas: {{chTotalDeAdministrativo}} </p>
+      <p>Soma Total: {{chTotal}} </p>
+    </div>
+  </div>
+
+<br>
+<div class="card">
+  <button type="submit" value="Voltar e Editar" class="btn green " (click)="telaPit()">Voltar e Editar</button>
+  <br>
+  <button type="submit" value="Enviar para Analise" class="btn green " (click)="enviarParaAnalise()">Enviar para Análise</button>
+  </div>
+ 
+</body>
+
+</html>
